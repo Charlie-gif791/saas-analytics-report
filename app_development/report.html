@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SaaS Analytics Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>SaaS Analytics Report</h1>
+<p><strong>Analysis Window:</strong> Last 30 days vs previous 30 days</p>
+
+<h2>Revenue Summary</h2>
+<table>
+    <tr>
+        <th>Metric</th>
+        <th>Last 30 Days</th>
+        <th>Previous 30 Days</th>
+        <th>% Change</th>
+    </tr>
+    <tr>
+        <td>Total Revenue</td>
+        <td>{{ total_revenue }}</td>
+        <td>{{ previous_total_revenue }}</td>
+        <td>{{ revenue_change_percent }}</td>
+    </tr>
+    <tr>
+        <td>Annualized Run Rate (based on last 30 days)</td>
+        <td>{{ annualized_run_rate }}</td>
+    </tr>      
+</table>
+
+<h2>Customer & Churn Metrics</h2>
+<table>
+    <tr>
+        <th>Metric</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Active Customers</td>
+        <td>{{ active_customers }}</td>
+    </tr>
+    <tr>
+        <td>New Customers</td>
+        <td>{{ new_customers }}</td>
+    </tr>
+    <tr>
+        <td>Customer Churn Rate</td>
+        <td>{{ customer_churn_rate }}</td>
+    </tr>
+</table>
+
+<h2>Automated Summary (AI-assisted)</h2>
+<p>
+{{ summary_text }}
+</p>
+
+</body>
+</html>
