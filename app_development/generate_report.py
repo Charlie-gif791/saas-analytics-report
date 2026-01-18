@@ -41,20 +41,15 @@ try:
     # Validation
     # -----------------------
     validate_charge_date_coverage(charges_df, analysis_date)
-    
+    print("Validating CSV input...")
+
     # -----------------------
     # Compute metrics
     # -----------------------
 
     customer_metrics = compute_customer_metrics(charges_df, analysis_date)
     revenue_metrics = compute_revenue_metrics(charges_df, analysis_date)
-    """
-    if (
-    customer_metrics["customer_churn_rate"] is None
-    or revenue_metrics["revenue_change_percent"] is None
-    ):
-        warning_reason = True
-    """
+    print("Computing revenue and customer metrics...")
 
 except Exception as e:
     failure_reason = str(e)
@@ -88,6 +83,7 @@ else:
         }
     )
     summary_text = generate_summary(metrics_payload)
+    print("Generating LLM summary...")
 
 # -----------------------
 # Prepare report data
