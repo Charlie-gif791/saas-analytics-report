@@ -52,7 +52,7 @@ The tool produces a structured HTML report with computed SaaS metrics and an AI-
 
 ![Generated report](screenshots/report_output.png)
 
-- Full metrics report (complete data)
+- Full metrics report (complete data, above)
 - Report with soft warnings (partial data)
 - Fallback report (validation failure)
 
