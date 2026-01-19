@@ -2,11 +2,11 @@ import pandas as pd, json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from app_development.validation import validate_charge_date_coverage
-from app_development.metrics_customers import compute_customer_metrics
-from app_development.metrics_revenue import compute_revenue_metrics
-from app_development.load_stripe_csv import load_stripe_charges
-from app_development.llm_summary import generate_summary
+from .validation import validate_charge_date_coverage
+from .metrics_customers import compute_customer_metrics
+from .metrics_revenue import compute_revenue_metrics
+from .load_stripe_csv import load_stripe_charges
+from .llm_summary import generate_summary
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 BASE_DIR = Path(__file__).resolve().parent
