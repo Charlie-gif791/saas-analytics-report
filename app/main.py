@@ -1,8 +1,9 @@
-import fastapi, io
+import fastapi
+import io
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import HTMLResponse
 import pandas as pd
-from generate_report import generate_report
+from .generate_report import generate_report
 
 app = FastAPI(title="SaaS Analytics Report Generator")
 

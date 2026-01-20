@@ -38,13 +38,13 @@
     </tr>
     <tr>
         <td>Total Revenue</td>
-        <td>{{ total_revenue }}</td>
-        <td>{{ previous_total_revenue }}</td>
-        <td>{{ revenue_change_percent }}</td>
+        <td>{{ revenue_metrics.total_revenue }}</td>
+        <td>{{ revenue_metrics.previous_total_revenue }}</td>
+        <td>{{ revenue_metrics.revenue_change_percent }}</td>
     </tr>
     <tr>
         <td>Annualized Run Rate (based on last 30 days)</td>
-        <td>{{ annualized_run_rate }}</td>
+        <td>{{ revenue_metrics.annualized_run_rate }}</td>
     </tr>      
 </table>
 
@@ -56,15 +56,15 @@
     </tr>
     <tr>
         <td>Active Customers</td>
-        <td>{{ active_customers }}</td>
+        <td>{{ customer_metrics.active_customers }}</td>
     </tr>
     <tr>
         <td>New Customers</td>
-        <td>{{ new_customers }}</td>
+        <td>{{ customer_metrics.new_customers }}</td>
     </tr>
     <tr>
         <td>Customer Churn Rate</td>
-        <td>{{ customer_churn_rate }}</td>
+        <td>{{ customer_metrics.customer_churn_rate }}</td>
     </tr>
 </table>
 

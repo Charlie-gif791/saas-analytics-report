@@ -12,7 +12,6 @@ def validate_charge_date_coverage(charges_df, analysis_date):
         utc=True
     )
 
-
     required_columns = {"customer_id", "charge_date", "amount"}
     missing = required_columns - set(charges_df.columns)
 
