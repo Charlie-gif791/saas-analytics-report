@@ -63,10 +63,13 @@ def generate_report(charges_df: pd.DataFrame) -> str:
     # -----------------------
     if failure_reason:
         summary_text = (
-            "The uploaded data does not cover sufficient time to compute trends."
+            "The uploaded data does not cover sufficient time to compute trends, "
+            "or the data is invalid."
         )
     else:
-        summary_text = generate_summary(report_data)
+        # Keep this off for now - reduce costs
+        #summary_text = llm_summary(report_data)
+        summary_text = "Valid input covering sufficient time was uploaded."
 
     report_data["summary_text"] = summary_text
 
@@ -87,7 +90,7 @@ def generate_report(charges_df: pd.DataFrame) -> str:
 # Script feature
 # -----------------------
 if __name__ == "__main__":
-    csv_path = Path("data:/example_stripe_export.csv")
+    csv_path = Path("data/example_stripe_export.csv")
     charges_df = load_stripe_charges(csv_path)
     html = generate_report(charges_df)
 
