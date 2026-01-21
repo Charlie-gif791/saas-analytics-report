@@ -1,5 +1,8 @@
 import pandas as pd
+import logging
 from datetime import timedelta
+
+logger = logging.getLogger(__name__)
 
 def validate_charge_date_coverage(charges_df, analysis_date):
     """
@@ -16,18 +19,25 @@ def validate_charge_date_coverage(charges_df, analysis_date):
     missing = required_columns - set(charges_df.columns)
 
     if charges_df.empty:
+        logger.error("Uploaded dataset contains no rows.")
         raise ValueError("Uploaded dataset contains no rows.")
 
     if missing:
+        logger.error(f"Missing required columns: {missing}")
         raise ValueError(f"Missing required columns: {missing}")
 
     if (charges_df["amount"] < 0).any():
+        logger.error("Charge amounts must be non-negative.")
         raise ValueError("Charge amounts must be non-negative.")
 
     min_required_date = analysis_date - timedelta(days=30)
     max_charge_date = charges_df["charge_date"].max()
 
     if max_charge_date < min_required_date:
+        logger.error(
+            "Charge data does not cover the required last 30-day analysis window."
+            )
+        
         raise ValueError(
             "Charge data does not cover the required last 30-day analysis window."
         )

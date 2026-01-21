@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+import logging
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -10,6 +11,7 @@ from .load_stripe_csv import load_stripe_charges
 from .llm_summary import generate_summary
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
+logger = logging.getLogger(__name__)
 BASE_DIR = Path(__file__).resolve().parent
 NA = "N/A"
 
@@ -18,12 +20,14 @@ def generate_report(charges_df: pd.DataFrame) -> str:
     Runs validation, computes metrics, generates LLM summary,
     and returns rendered HTML report.
     """
+    logger.info("Starting report generation")
     failure_reason = None
 
     # -----------------------
     # Validation
     # -----------------------
     try:
+        logger.info("Validating input data")
         validate_charge_date_coverage(charges_df)
     
     except Exception as e:
@@ -33,7 +37,10 @@ def generate_report(charges_df: pd.DataFrame) -> str:
     # Metrics
     # -----------------------
     if not failure_reason:
+        logger.info("Computing customer metrics")
         customer_metrics = compute_customer_metrics(charges_df)
+
+        logger.info("Computing revenue metrics")
         revenue_metrics = compute_revenue_metrics(charges_df)
     else:
         customer_metrics = {
@@ -63,13 +70,11 @@ def generate_report(charges_df: pd.DataFrame) -> str:
     # -----------------------
     if failure_reason:
         summary_text = (
-            "The uploaded data does not cover sufficient time to compute trends, "
-            "or the data is invalid."
+            "Insufficient historical data to compute one or more metrics "
+            "for the 30-day analysis window."
         )
     else:
-        # Keep this off for now - reduce costs
-        #summary_text = llm_summary(report_data)
-        summary_text = "Valid input covering sufficient time was uploaded."
+        summary_text = generate_summary(report_data)
 
     report_data["summary_text"] = summary_text
 
@@ -82,6 +87,7 @@ def generate_report(charges_df: pd.DataFrame) -> str:
     )
     template = env.get_template("report.html")
 
+    logger.info("Rendering HTML report")
     rendered_html = template.render(report_data)
 
     return rendered_html
