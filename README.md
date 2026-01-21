@@ -80,6 +80,12 @@ Upload a CSV containing:
 Deployment
 The application is deployed as a lightweight backend service (Render free tier) with a minimal upload interface. It is intentionally semi-public and designed for demonstration and portfolio use.
 
+Monetization Considerations
+This application incurs per-request LLM inference costs. In a production setting,
+usage would be gated behind authentication and a per-report fee or subscription
+model. Payments were intentionally not implemented in this version to keep the
+focus on data ingestion, validation, and analytics pipeline design.
+
 Why This Project?
 This project demonstrates:
 - Data validation and time-windowed analytics
