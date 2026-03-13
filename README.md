@@ -7,9 +7,11 @@ The application is designed to be deterministic, transparent, and cautious — p
 
 ## Live Demo
 
-API: https://saas-analytics-report-generator.onrender.com
+Interactive API documentation: 
+https://saas-analytics-report-generator.onrender.com/docs
 
-DOCS: https://saas-analytics-report-generator.onrender.com/docs
+Base API endpoint: 
+https://saas-analytics-report-generator.onrender.com
 
 ## What This App Does
 
