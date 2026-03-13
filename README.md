@@ -5,7 +5,7 @@
 Early-stage SaaS founders often have access to raw billing exports (e.g., Stripe CSVs) but lack a fast, reliable way to extract meaningful monthly insights. This project provides a lightweight analytics pipeline that validates uploaded billing data, computes key revenue and customer metrics, and generates a concise, downloadable executive report.
 The application is designed to be deterministic, transparent, and cautious — prioritizing correctness and interpretability over forecasting or speculative analysis.
 
-### Live Demo
+## Live Demo
 
 API: https://saas-analytics-report-generator.onrender.com
 
